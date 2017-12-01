@@ -74,12 +74,12 @@ shinyServer(function(input, output, session) {
 		updateCheckboxGroupInput(
 			session, 'countries', choices = countries, inline = T,
 			selected = ({if (input$all_countries > 0) {
-				if (input$all_countries %% 2 == 0) {
+				if (input$all_countries %% 2 != 0) {
 					c()
 				} else {
 					countries
 				}
-			} else c("United States", "Singapore", "Argentina", "India")
+			} else countries
 			})
 		)
 	})
@@ -127,7 +127,7 @@ shinyServer(function(input, output, session) {
   		spaghetti_fitted = ggplot(data = slopes) + 
 	  	 	geom_line(aes_string(x = "age",y = outcome, group = "interaction(country,Gender)", linetype = "Gender", colour = zmod)) + 
   			scale_x_continuous("Age", breaks = seq(16,45,by=5)) + 
-  			scale_y_continuous("Self esteem") +
+  			scale_y_continuous("Self-esteem", limits = c(45,55), breaks = c(47,50,53)) +
   			karo_theme +
 	  	 	guides(linetype = guide_legend(order = 1)) +
 	  	 	ggtitle(title) +
@@ -156,7 +156,7 @@ shinyServer(function(input, output, session) {
   			scale_linetype_discrete() +
   			scale_fill_continuous(guide=F) +
   			scale_x_continuous("Age", breaks = seq(16,45,by=5)) + 
-  			scale_y_continuous("Self esteem") +
+  			scale_y_continuous("Self-esteem", limits = c(45,55), breaks = c(47,50,53)) +
   			karo_theme +
   			guides(linetype = guide_legend(order = 1)) +
   			ggtitle(title) +

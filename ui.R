@@ -7,7 +7,7 @@ countries = c("Canada", "United States", "Australia", "New Zealand", "Argentina"
 							"China", "Hong Kong", "India", "Japan", "Korea, Republic of", 
 							"Philippines", "Indonesia", "Malaysia", "Singapore", "Thailand", 
 							"Israel", "Turkey", "United Arab Emirates")
-moderators = c("GDP", "HDI", "GINI", "MAMm", "MAMf", "AFR", "RAT", "GGI", 
+moderators = c("GDP", "HDI", "GINI", "MAMm", "MAMf", "AFR", "GGI", 
 							 "SUF", "POW", "IND", "MAS", "UNC")
 
 library(shiny)
@@ -42,14 +42,14 @@ shinyUI(fluidPage(
 			condition = "input.fitted == true",
 			column(2,
 						 checkboxInput("moderated_intercepts", 
-						 							label = "Moderated intercepts", 
+						 							label = "Show sex differences", 
 						 							value = F)
 			)
 		),
 		column(2,
 					 checkboxInput("annotate_countries", 
 					 			label = "Label countries", 
-					 			value = T)
+					 			value = F)
 		),
 		column(2,
 					 actionButton("all_countries", label="(de)select all countries")
@@ -67,7 +67,8 @@ shinyUI(fluidPage(
 			checkboxGroupInput("countries", 
 												 label = h3("Countries"), 
 												 choices = countries,
-												 selected =  c("United States", "Singapore", "Argentina", "India"),
+												 selected = countries,
+# 												 selected =  c("United States", "Singapore", "Argentina", "India"),
 												 inline = T)
 		)
 	)
